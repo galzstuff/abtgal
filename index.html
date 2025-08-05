@@ -205,6 +205,12 @@
     </div>
   </div>
 
+    <div class="window">
+      <h2 id="DiscordTitle">Discord Status</h2>
+        <a href="https://discord.com/users/823875991729864725"><img src="https://lanyard.cnrad.dev/api/823875991729864725?idleMessage=Not%20doing%20anything%20at%20the%20moment.%2FNo%20estoy%20haciendo%20nada%20por%20ahora.&theme=dark&hideDecoration=true&animatedDecoration=false" /></a>
+    </div>
+  </div>
+
   <script>
     function toggleSocialMenu() {
       const menu = document.getElementById("socialMenu");
@@ -225,9 +231,10 @@
         document.getElementById("socialText").textContent = "Sígueme en mis redes sociales para estar al tanto de mi contenido en internet.";
         document.getElementById("socialLink").textContent = "Ver redes sociales →";
         document.getElementById("interestsTitle").textContent = "Intereses";
-    	document.getElementById("Code").textContent = "Programar";
-    	document.getElementById("Valve").textContent = "Juegos de Valve";
-    	document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
+    	  document.getElementById("Code").textContent = "Programar";
+    	  document.getElementById("Valve").textContent = "Juegos de Valve";
+    	  document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
+        document.getElementById("DiscordTitle").textContent = "Estado de Discord";
         document.querySelector(".lang-toggle").textContent = "English";
         currentLang = 'es';
       } else {
@@ -237,9 +244,10 @@
         document.getElementById("socialText").textContent = "Follow me on social media to stay updated with my content online.";
         document.getElementById("socialLink").textContent = "See socials →";
         document.getElementById("interestsTitle").textContent = "Interests";
-    	document.getElementById("Code").textContent = "Coding";
-    	document.getElementById("Valve").textContent = "Valve games";
-    	document.getElementById("Shitpost").textContent = "Shitposting";
+    	  document.getElementById("Code").textContent = "Coding";
+    	  document.getElementById("Valve").textContent = "Valve games";
+    	  document.getElementById("Shitpost").textContent = "Shitposting";
+        document.getElementById("DiscordTitle").textContent = "Discord Status (insert cool easter egg here >:])";
         document.querySelector(".lang-toggle").textContent = "Español";
         currentLang = 'en';
       }
