@@ -362,9 +362,13 @@
   
     // Autoplay first track on load
     window.addEventListener('DOMContentLoaded', () => {
-      loadTrack(currentTrack);
+      const waitForInteraction = () => {
+        loadTrack(currentTrack);
+        document.removeEventListener('click', waitForInteraction);
+      };
+      document.addEventListener('click', waitForInteraction, { once: true });
     });
-  </script>
 
+  </script>
 </body>
 </html>
