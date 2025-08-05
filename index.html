@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gal's Stuff</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    @font-face {
+      font-family: 'M8X11';
+      src: url('https://files.catbox.moe/0gpr64.ttf') format('truetype');
+    }
+
+    :root {
+      --bg: #f3e5f5;
+      --card-bg: #c0abc7;
+      --primary: #8e24aa;
+      --accent: #d1c4e9;
+      --text: #2e003e;
+      --radius: 16px;
+      --shadow: 0 12px 24px rgba(0,0,0,0.1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'M8X11', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      overflow-x: hidden;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .header img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+    }
+
+    .lang-toggle {
+      margin-top: 1rem;
+      padding: 0.4rem 0.8rem;
+      border: none;
+      background: var(--accent);
+      color: var(--text);
+      border-radius: var(--radius);
+      font-family: 'M8X11', sans-serif;
+      cursor: pointer;
+    }
+
+    .window-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+    }
+
+    .window {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem;
+      width: 300px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      animation: fadeInUp 0.7s ease forwards;
+      opacity: 0;
+    }
+
+    .window:nth-child(1) { animation-delay: 0.2s; }
+    .window:nth-child(2) { animation-delay: 0.4s; }
+    .window:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .window h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .window p {
+      flex-grow: 1;
+      font-size: 1rem;
+    }
+
+    .window li {
+      margin-left: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .window a {
+      margin-top: 1rem;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .window a:hover {
+      color: #6a1b9a;
+    }
+
+    .social-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: var(--text);
+      transition: color 0.3s ease;
+    }
+
+    .social-link:hover {
+      color: var(--primary);
+    }
+
+    @media (max-width: 768px) {
+      .window {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="https://files.catbox.moe/bhy4w9.png" alt="Gal avatar">
+    <h1>Gal's Stuff</h1>
+    <button class="lang-toggle" onclick="toggleLang()">Español</button>
+  </div>
+
+  <div class="window-grid">
+    <div class="window">
+      <h2 id="aboutTitle">About Me</h2>
+      <p id="aboutText">Hi, I'm Gal. I'm a content creator and programmer that (mostly) does private projects that I later share with friends for fun.</p>
+    </div>
+
+    <div class="window">
+      <h2 id="socialTitle">Socials</h2>
+      <p id="socialText">Follow me on social media to stay updated with my content online.</p>
+      <a onclick="toggleSocialMenu()" id="socialLink">See social links →</a>
+      <div class="social-menu" id="socialMenu">
+        <a class="social-link" href="https://discord.gg/3f4CZK2B5R" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a class="social-link" href="https://tiktok.com/@imgal__" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="social-link" href="https://twitter.com/AKAIndiee" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        <a class="social-link" href="https://youtube.com/@im_gal" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+        <a class="social-link" href="https://roblox.com/users/1879315878/profile" target="_blank"><i class="fa-brands fa-roblox"></i> Roblox</a>
+      </div>
+    </div>
+
+    <div class="window">
+      <h2 id="interestsTitle">Interests</h2>
+        <li>Forsaken</li>
+        <li>OneShot</li>
+        <li>Creatures of Sonaria</li>
+        <li>VOCALOID</li>
+        <li>Balatro</li>
+      	<li id="Shitpost">Shitposting</li>
+        <li id="Code">Coding</li>
+      	<li id="Valve">Valve games</li>
+    </div>
+  </div>
+
+  <script>
+    function toggleSocialMenu() {
+      const menu = document.getElementById("socialMenu");
+      if (menu.style.display === "flex") {
+        menu.style.display = "none";
+      } else {
+        menu.style.display = "flex";
+        menu.style.animation = "slideDown 0.3s ease";
+      }
+    }
+
+    let currentLang = 'en';
+    function toggleLang() {
+      if (currentLang === 'en') {
+        document.getElementById("aboutTitle").textContent = "Sobre mí";
+        document.getElementById("aboutText").textContent = "Buenas, soy Gal. Soy un creador de contenido y programador de varios proyectos (mayormente) privados que comparto con mis amigos y hago por diversión.";
+        document.getElementById("socialTitle").textContent = "Redes sociales";
+        document.getElementById("socialText").textContent = "Sígueme en mis redes sociales para estar al tanto de mi contenido en internet.";
+        document.getElementById("socialLink").textContent = "Ver redes sociales →";
+        document.getElementById("interestsTitle").textContent = "Intereses";
+    	document.getElementById("Code").textContent = "Programar";
+    	document.getElementById("Valve").textContent = "Juegos de Valve";
+    	document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
+        document.querySelector(".lang-toggle").textContent = "English";
+        currentLang = 'es';
+      } else {
+        document.getElementById("aboutTitle").textContent = "About me";
+        document.getElementById("aboutText").textContent = "Hi, I'm Gal. I'm a content creator and programmer that (mostly) does private projects that I later share with friends for fun.";
+        document.getElementById("socialTitle").textContent = "Socials";
+        document.getElementById("socialText").textContent = "Follow me on social media to stay updated with my content online.";
+        document.getElementById("socialLink").textContent = "See socials →";
+        document.getElementById("interestsTitle").textContent = "Interests";
+    	document.getElementById("Code").textContent = "Coding";
+    	document.getElementById("Valve").textContent = "Valve games";
+    	document.getElementById("Shitpost").textContent = "Shitposting";
+        document.querySelector(".lang-toggle").textContent = "Español";
+        currentLang = 'en';
+      }
+    }
+  </script>
+</body>
+</html>
