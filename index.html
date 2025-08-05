@@ -91,6 +91,24 @@
       opacity: 0;
     }
 
+    .window button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      width: fit-content;
+      align-self: flex-end;
+    }
+    
+    .window button:hover {
+      background: #4e4cb8;
+    }
+
+
     .window:nth-child(1) { animation-delay: 0.2s; }
     .window:nth-child(2) { animation-delay: 0.4s; }
     .window:nth-child(3) { animation-delay: 0.6s; }
@@ -169,7 +187,7 @@
 </head>
 <body>
   <div class="header">
-    <img src="https://files.catbox.moe/bhy4w9.png" alt="Gal avatar">
+    <img src="https://files.catbox.moe/bhy4w9.png" alt="Gal's Urzuk OC, Purpur. / El OC de Urzuk de Gal, Purpur.">
     <h1>Gal's Stuff</h1>
     <button class="lang-toggle" onclick="toggleLang()">Cambiar a Español</button>
   </div>
@@ -215,6 +233,13 @@
       <h2 id="VisitsTitle">Visits Counter</h2>
         <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgalzstuff.github.io%2Fabtgal%2F&label=Gal%27s+Stuff&icon=music-note&color=%236610f2&message=&style=flat&tz=Europe%2FMadrid">
     </div>
+
+    <div class="window">
+      <h2 id="NP">Now Playing</h2>
+      <p id="nowPlaying">Loading...</p>
+      <audio id="bgMusic" autoplay loop></audio>
+      <button onclick="toggleMute()" id="muteBtn">🔊</button>
+    </div>
   </div>
 
   <script>
@@ -243,6 +268,7 @@
         document.getElementById("DiscordTitle").textContent = "Estado de Discord";
         document.getElementById("Clothes").textContent = "Ropa que vendo en Roblox";
         document.getElementById("VisitsTitle").textContent = "Contador de visitas";
+        document.getElementById("NP").textContent = "Ahora reproduciendo...";
         document.querySelector(".lang-toggle").textContent = "Change to English";
         currentLang = 'es';
       } else {
@@ -258,10 +284,87 @@
         document.getElementById("DiscordTitle").textContent = "Discord Status (insert cool easter egg here >:])";
         document.getElementById("Clothes").textContent = "Selling clothes on Roblox";
         document.getElementById("VisitsTitle").textContent = "Visits Counter";
+        document.getElementById("NP").textContent = "Now Playing";
         document.querySelector(".lang-toggle").textContent = "Cambiar a Español";
         currentLang = 'en';
       }
     }
   </script>
+  <script>
+    const playlist = [
+      {
+        title: "ELECTRIC WEEKEND ZONE",
+        url: "https://files.catbox.moe/9vbbyf.mp3"
+      },
+      {
+        title: "ULTRASONIC FAITH",
+        url: "https://files.catbox.moe/7jkwr3.mp3"
+      },
+      {
+        title: "number",
+        url: "https://files.catbox.moe/j2ypp0.mp3"
+      },
+      {
+        title: "Relayouter",
+        url: "https://files.catbox.moe/wb1k31.mp3"
+      },
+      {
+        title: "BEYOND THE SURFACE",
+        url: "https://files.catbox.moe/glmxgz.mp3"
+      },
+      {
+        title: "Fade to White",
+        url: "https://files.catbox.moe/y22wil.mp3"
+      },
+      {
+        title: "AND I'M GONE",
+        url: "https://files.catbox.moe/rx5mvw.mp3"
+      },
+      {
+        title: "Blam-Oh!",
+        url: "https://files.catbox.moe/0memgw.mp3"
+      },
+      {
+        title: "diginova",
+        url: "https://files.catbox.moe/r0cvpk.mp3"
+      },
+      {
+        title: "where you where",
+        url: "https://files.catbox.moe/kflr0b.mp3"
+      },
+      {
+        title: "Sin to Win!",
+        url: "https://files.catbox.moe/7a44zu.mp3"
+      },
+    ];
+  
+    let currentTrack = 0;
+    const audio = document.getElementById('bgMusic');
+    const nowPlaying = document.getElementById('nowPlaying');
+    const muteBtn = document.getElementById('muteBtn');
+  
+    function loadTrack(index) {
+      const track = playlist[index];
+      audio.src = track.url;
+      nowPlaying.textContent = `🎵 ${track.title}`;
+      audio.play();
+    }
+  
+    function toggleMute() {
+      audio.muted = !audio.muted;
+      muteBtn.textContent = audio.muted ? '🔇' : '🔊';
+    }
+  
+    audio.addEventListener('ended', () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadTrack(currentTrack);
+    });
+  
+    // Autoplay first track on load
+    window.addEventListener('DOMContentLoaded', () => {
+      loadTrack(currentTrack);
+    });
+  </script>
+
 </body>
 </html>
