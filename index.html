@@ -397,7 +397,6 @@
     });
   </script>
 
-
   <script>
     const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
   
@@ -408,7 +407,7 @@
         const contenedor = document.getElementById("blogEntries");
         contenedor.innerHTML = "";
   
-        posts.reverse().forEach(post => {
+        posts.forEach(post => {
           const div = document.createElement("div");
           div.style.marginBottom = "20px";
           div.innerHTML = `
@@ -427,6 +426,5 @@
   
     window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
-
 </body>
 </html>
