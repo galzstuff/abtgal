@@ -241,251 +241,16 @@
       <button onclick="toggleMute()" id="muteBtn">🔊</button>
     </div>
 
-    <div class="window" style="max-height: 300px; overflow-y: auto;">
-      <h2>📝 Blog</h2>
-      <div id="blogEntries">
+    <div class="window">
+      <h2>Blog</h2>
+      <div id="blogEntries" style="max-height: 300px; overflow-y: auto; padding-right: 8px;">
         <p>Loading blog posts...</p>
       </div>
     </div>
   </div>
 
   <script>
-    function toggleSocialMenu() {
-      const menu = document.getElementById("socialMenu");
-      if (menu.style.display === "flex") {
-        menu.style.display = "none";
-      } else {
-        menu.style.display = "flex";
-        menu.style.animation = "slideDown 0.3s ease";
-      }
-    }
-
-    let currentLang = 'en';
-    function toggleLang() {
-      if (currentLang === 'en') {
-        document.getElementById("aboutTitle").textContent = "Sobre mí";
-        document.getElementById("aboutText").textContent = "Buenas, soy Gal. Soy un creador de contenido y programador de varios proyectos (mayormente) privados que comparto con mis amigos y hago por diversión. Soy de España.";
-        document.getElementById("socialTitle").textContent = "Redes sociales";
-        document.getElementById("socialText").textContent = "Sígueme en mis redes sociales para estar al tanto de mi contenido en internet.";
-        document.getElementById("socialLink").textContent = "Ver redes sociales →";
-        document.getElementById("interestsTitle").textContent = "Intereses";
-    	  document.getElementById("Code").textContent = "Programar";
-    	  document.getElementById("Valve").textContent = "Juegos de Valve";
-    	  document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
-        document.getElementById("DiscordTitle").textContent = "Estado de Discord";
-        document.getElementById("Clothes").textContent = "Ropa que vendo en Roblox";
-        document.getElementById("Clothes").textContent = "Ropa que vendo en Roblox<i class="fas fa-cube"></i>";
-        document.getElementById("VisitsTitle").textContent = "Contador de visitas";
-        document.getElementById("NP").textContent = "Ahora reproduciendo...";
-        document.querySelector(".lang-toggle").textContent = "Change to English";
-@@ -289,249 +289,249 @@
-    	  document.getElementById("Valve").textContent = "Valve games";
-    	  document.getElementById("Shitpost").textContent = "Shitposting";
-        document.getElementById("DiscordTitle").textContent = "Discord Status (insert cool easter egg here >:])";
-        document.getElementById("Clothes").textContent = "Selling clothes on Roblox";
-        document.getElementById("Clothes").textContent = "Selling clothes on Roblox<i class="fas fa-cube"></i>";
-        document.getElementById("VisitsTitle").textContent = "Visits Counter";
-        document.getElementById("NP").textContent = "Now Playing";
-        document.querySelector(".lang-toggle").textContent = "Cambiar a Español";
-        currentLang = 'en';
-      }
-    }
-  </script>
-  <script>
-    const playlist = [
-      {
-        title: "ELECTRIC WEEKEND ZONE",
-        url: "https://files.catbox.moe/9vbbyf.mp3"
-      },
-      {
-        title: "ULTRASONIC FAITH",
-        url: "https://files.catbox.moe/7jkwr3.mp3"
-      },
-      {
-        title: "number",
-        url: "https://files.catbox.moe/j2ypp0.mp3"
-      },
-      {
-        title: "Relayouter",
-        url: "https://files.catbox.moe/wb1k31.mp3"
-      },
-      {
-        title: "BEYOND THE SURFACE",
-        url: "https://files.catbox.moe/glmxgz.mp3"
-      },
-      {
-        title: "Fade to White",
-        url: "https://files.catbox.moe/y22wil.mp3"
-      },
-      {
-        title: "AND I'M GONE",
-        url: "https://files.catbox.moe/rx5mvw.mp3"
-      },
-      {
-        title: "Blam-Oh!",
-        url: "https://files.catbox.moe/0memgw.mp3"
-      },
-      {
-        title: "diginova",
-        url: "https://files.catbox.moe/r0cvpk.mp3"
-      },
-      {
-        title: "where you where",
-        url: "https://files.catbox.moe/kflr0b.mp3"
-      },
-      {
-        title: "Sin to Win!",
-        url: "https://files.catbox.moe/7a44zu.mp3"
-      },
-      {
-        title: "Lagtrain",
-        url: "https://files.catbox.moe/l3qac7.mp3"
-      },
-      {
-        title: "WORLDWID3",
-        url: "https://files.catbox.moe/t2m1pr.mp3"
-      },
-      {
-        title: "Mutronic Plague",
-        url: "https://files.catbox.moe/hzsxha.mp3"
-      },
-      {
-        title: "Hellion",
-        url: "https://files.catbox.moe/gh260o.mp3"
-      },
-      {
-        title: "ARTIFACTUAL RECOLLECTION",
-        url: "https://files.catbox.moe/z7ubw1.mp3"
-      },
-      {
-        title: "Compass",
-        url: "https://files.catbox.moe/ugexbu.mp3"
-      },
-      {
-        title: "M3 N MIN3",
-        url: "https://files.catbox.moe/kpkd09.mp3"
-      },
-      {
-        title: "oliviarodrigo23",
-        url: "https://files.catbox.moe/5nfcrd.mp3"
-      },
-      {
-        title: "INTERNET OVERDOSE",
-        url: "https://files.catbox.moe/l05zn2.mp3"
-      },
-      {
-        title: "Medicine",
-        url: "https://files.catbox.moe/fwut80.mp3"
-      },
-      {
-        title: "DISK FAILURE",
-        url: "https://files.catbox.moe/de5zfx.mp3"
-      },
-      {
-        title: ": 3",
-        url: "https://files.catbox.moe/q4e8rh.mp3"
-      },
-      {
-        title: "Lost Umbrella",
-        url: "https://files.catbox.moe/5m77ze.mp3"
-      },
-      {
-        title: "OVERTIME!?",
-        url: "https://files.catbox.moe/rce93y.mp3"
-      },
-      {
-        title: "Hymn To The Decadent Life",
-        url: "https://files.catbox.moe/2n1uom.mp3"
-      },
-      {
-        title: "THE INTENSE VOICE OF HATSUNE MIKU",
-        url: "https://files.catbox.moe/ytq85q.mp3"
-      },
-      {
-        title: "Bad Apple!!",
-        url: "https://files.catbox.moe/g7gr9g.mp3"
-      },
-      {
-        title: "KATAMARI",
-        url: "https://files.catbox.moe/lv1m49.mp3"
-      },
-      {
-        title: "One Forgotten Night",
-        url: "https://files.catbox.moe/94d7nq.mp3"
-      },
-      {
-        title: "Fog sees it EX",
-        url: "https://files.catbox.moe/5fn9yg.mp3"
-      },
-      {
-        title: "THE ULTIMATE STRATEGY",
-        url: "https://files.catbox.moe/l5w6b5.mp3"
-      },
-      {
-        title: "Liar Dancer",
-        url: "https://files.catbox.moe/reo10o.mp3"
-      },
-      {
-        title: "parvorbital",
-        url: "https://files.catbox.moe/8adv43.mp3"
-      },
-      {
-        title: "TURBULENCE",
-        url: "https://files.catbox.moe/ifcuhp.mp3"
-      },
-      {
-        title: "Wavetapper",
-        url: "https://files.catbox.moe/o3s9h2.mp3"
-      },
-      {
-        title: "Options EX",
-        url: "https://files.catbox.moe/b2brrb.mp3"
-      },
-      {
-        title: "Tetoris",
-        url: "https://files.catbox.moe/zqj7kc.mp3"
-      },
-      {
-        title: "Teto Territory",
-        url: "https://files.catbox.moe/kznkgh.mp3"
-      },
-      {
-        title: "Dune",
-        url: "https://files.catbox.moe/v9xq4v.mp3"
-      },
-      {
-        title: "SR20DET",
-        url: "https://files.catbox.moe/lt1bp1.mp3"
-      },
-      {
-        title: "Scourge of the Universe",
-        url: "https://files.catbox.moe/lg140o.mp3"
-      },
-      {
-        title: "Credits EX",
-        url: "https://files.catbox.moe/tsd640.mp3"
-      },
-    ];
-
-    let currentTrack = 0;
-    const audio = document.getElementById('bgMusic');
-    const nowPlaying = document.getElementById('nowPlaying');
-    const muteBtn = document.getElementById('muteBtn');
-
-    function loadTrack(index) {
-      const track = playlist[index];
-      audio.src = track.url;
-      nowPlaying.textContent = `🎵 ${track.title}`;
-      audio.play();
-    }
-
-    function toggleMute() {
-      audio.muted = !audio.muted;
-      muteBtn.textContent = audio.muted ? '🔇' : '🔊';
-    }
-
-    audio.addEventListener('ended', () => {
-      currentTrack = (currentTrack + 1) % playlist.length;
+@@ -488,15 +495,42 @@
       loadTrack(currentTrack);
     });
 
@@ -500,14 +265,14 @@
 
   <script>
     const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
-
+  
     async function cargarBlog() {
       try {
         const res = await fetch(BLOG_JSON_URL);
         const posts = await res.json();
         const contenedor = document.getElementById("blogEntries");
         contenedor.innerHTML = "";
-
+  
         posts.reverse().forEach(post => {
           const div = document.createElement("div");
           div.style.marginBottom = "20px";
@@ -520,11 +285,10 @@
           contenedor.appendChild(div);
         });
       } catch (error) {
-        console.error("Error loading blog posts:", error);
         document.getElementById("blogEntries").innerHTML = "<p>Error loading blog posts.</p>";
       }
     }
-
+  
     window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
 </body>
