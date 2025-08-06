@@ -238,8 +238,13 @@
       <h2 id="NP">Now Playing</h2>
       <div id="nowPlaying">Loading...</div>
       <audio id="bgMusic" controls style="width: 100%;"></audio>
-      <button id="muteBtn" onclick="toggleMute()">🔊</button>
+      <div style="margin-top: 10px;">
+        <button onclick="prevTrack()">⏮️</button>
+        <button onclick="toggleMute()" id="muteBtn">🔊</button>
+        <button onclick="nextTrack()">⏭️</button>
+      </div>
     </div>
+
 
 
 
@@ -363,23 +368,35 @@
       muteBtn.textContent = audio.muted ? '🔇' : '🔊';
     }
   
+    function nextTrack() {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadTrack(currentTrack);
+    }
+  
+    function prevTrack() {
+      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrack);
+    }
+  
     window.addEventListener("DOMContentLoaded", () => {
       audio = document.getElementById("bgMusic");
       nowPlaying = document.getElementById("nowPlaying");
       muteBtn = document.getElementById("muteBtn");
   
+      // Iniciar solo tras interacción del usuario
       const iniciar = () => {
         loadTrack(currentTrack);
         document.removeEventListener("click", iniciar);
       };
       document.addEventListener("click", iniciar, { once: true });
   
+      // Reproducir siguiente canción al terminar
       audio.addEventListener("ended", () => {
-        currentTrack = (currentTrack + 1) % playlist.length;
-        loadTrack(currentTrack);
+        nextTrack();
       });
     });
   </script>
+
 
   <script>
     const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
