@@ -481,7 +481,7 @@
     function loadTrack(index) {
       const track = playlist[index];
       audio.src = track.url;
-      nowPlaying.textContent = 🎵 ${track.title};
+      nowPlaying.textContent = `🎵 ${track.title}`;
       audio.play();
     }
   
@@ -496,13 +496,20 @@
     });
   
     window.addEventListener('DOMContentLoaded', () => {
+      // Carga la primera canción pero espera la interacción para reproducir (para políticas de autoplay)
       const waitForInteraction = () => {
         loadTrack(currentTrack);
         document.removeEventListener('click', waitForInteraction);
       };
       document.addEventListener('click', waitForInteraction, { once: true });
     });
+  
+    // Asocia el botón mute si existe
+    if (muteBtn) {
+      muteBtn.addEventListener('click', toggleMute);
+    }
   </script>
+
 
   <script>
     const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
