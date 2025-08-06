@@ -411,12 +411,12 @@
         posts.reverse().forEach(post => {
           const div = document.createElement("div");
           div.style.marginBottom = "20px";
-          div.innerHTML = 
+          div.innerHTML = `
             <strong>${post.title}</strong><br>
             <small>${post.date}</small>
             <p>${post.content}</p>
             <hr>
-          ;
+          `;
           contenedor.appendChild(div);
         });
       } catch (error) {
@@ -427,5 +427,6 @@
   
     window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
+
 </body>
 </html>
