@@ -234,12 +234,20 @@
         <a href="https://www.youtube.com/watch?v=xvFZjo5PgG0&pp=0gcJCfwAo7VqN5tD" title="contador de visitas"><img src="https://www.web-counter.net/count_20091204.php?c=nVbAxZAOju8" style="border:0;padding:0;margin:0;" alt="contador de visitas"></a>
     </div>
 
-    <div class="window">
-      <h2 id="NP">Now Playing</h2>
-      <p id="nowPlaying">Loading...</p>
-      <audio id="bgMusic" autoplay></audio>
-      <button onclick="toggleMute()" id="muteBtn">🔊</button>
+    <div class="window" id="musicPlayer">
+      <div class="title-bar">
+        <div class="title">Now Playing</div>
+        <div class="window-controls">
+          <button onclick="this.closest('.window').style.display='none'">✖</button>
+        </div>
+      </div>
+      <div class="window-body">
+        <audio id="bgMusic" controls></audio>
+        <div id="nowPlaying" style="margin-top: 8px;">🎵 Loading...</div>
+        <button id="muteBtn" style="margin-top: 8px;">🔊</button>
+      </div>
     </div>
+
 
     <div class="window" style="max-height: 300px; overflow-y: auto;">
       <h2>📝 Blog</h2>
