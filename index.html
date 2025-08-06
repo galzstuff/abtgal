@@ -103,7 +103,7 @@
       width: fit-content;
       align-self: flex-end;
     }
-    
+
     .window button:hover {
       background: #4e4cb8;
     }
@@ -208,7 +208,7 @@
         <a class="social-link" href="https://twitter.com/AKAIndiee" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
         <a class="social-link" href="https://youtube.com/@im_gal" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
         <a class="social-link" href="https://roblox.com/users/1879315878/profile" target="_blank"><i class="fas fa-cube"></i> Roblox</a>
-        <a id="Clothes" class="social-link" href="https://www.roblox.com/catalog?Category=1&CreatorName=DConectortab&CreatorType=User&salesTypeFilter=1" target="_blank">Selling clothes on Roblox</a>
+        <a id="Clothes" class="social-link" href="https://www.roblox.com/catalog?Category=1&CreatorName=DConectortab&CreatorType=User&salesTypeFilter=1" target="_blank"><i class="fas fa-cube"></i> Selling clothes on Roblox</a>
       </div>
     </div>
 
@@ -274,22 +274,16 @@
     	  document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
         document.getElementById("DiscordTitle").textContent = "Estado de Discord";
         document.getElementById("Clothes").textContent = "Ropa que vendo en Roblox";
+        document.getElementById("Clothes").textContent = "Ropa que vendo en Roblox<i class="fas fa-cube"></i>";
         document.getElementById("VisitsTitle").textContent = "Contador de visitas";
         document.getElementById("NP").textContent = "Ahora reproduciendo...";
         document.querySelector(".lang-toggle").textContent = "Change to English";
-        currentLang = 'es';
-      } else {
-        document.getElementById("aboutTitle").textContent = "About me";
-        document.getElementById("aboutText").textContent = "Hi, I'm Gal. I'm a content creator and programmer that (mostly) does private projects that I later share with friends for fun. I'm from Spain.";
-        document.getElementById("socialTitle").textContent = "Socials";
-        document.getElementById("socialText").textContent = "Follow me on social media to stay updated with my content online.";
-        document.getElementById("socialLink").textContent = "See socials →";
-        document.getElementById("interestsTitle").textContent = "Interests";
-    	  document.getElementById("Code").textContent = "Coding";
+@@ -289,249 +289,249 @@
     	  document.getElementById("Valve").textContent = "Valve games";
     	  document.getElementById("Shitpost").textContent = "Shitposting";
         document.getElementById("DiscordTitle").textContent = "Discord Status (insert cool easter egg here >:])";
         document.getElementById("Clothes").textContent = "Selling clothes on Roblox";
+        document.getElementById("Clothes").textContent = "Selling clothes on Roblox<i class="fas fa-cube"></i>";
         document.getElementById("VisitsTitle").textContent = "Visits Counter";
         document.getElementById("NP").textContent = "Now Playing";
         document.querySelector(".lang-toggle").textContent = "Cambiar a Español";
@@ -472,29 +466,29 @@
         url: "https://files.catbox.moe/tsd640.mp3"
       },
     ];
-  
+
     let currentTrack = 0;
     const audio = document.getElementById('bgMusic');
     const nowPlaying = document.getElementById('nowPlaying');
     const muteBtn = document.getElementById('muteBtn');
-  
+
     function loadTrack(index) {
       const track = playlist[index];
       audio.src = track.url;
       nowPlaying.textContent = `🎵 ${track.title}`;
       audio.play();
     }
-  
+
     function toggleMute() {
       audio.muted = !audio.muted;
       muteBtn.textContent = audio.muted ? '🔇' : '🔊';
     }
-  
+
     audio.addEventListener('ended', () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       loadTrack(currentTrack);
     });
-  
+
     window.addEventListener('DOMContentLoaded', () => {
       const waitForInteraction = () => {
         loadTrack(currentTrack);
@@ -506,14 +500,14 @@
 
   <script>
     const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
-  
+
     async function cargarBlog() {
       try {
         const res = await fetch(BLOG_JSON_URL);
         const posts = await res.json();
         const contenedor = document.getElementById("blogEntries");
         contenedor.innerHTML = "";
-  
+
         posts.reverse().forEach(post => {
           const div = document.createElement("div");
           div.style.marginBottom = "20px";
@@ -530,7 +524,7 @@
         document.getElementById("blogEntries").innerHTML = "<p>Error loading blog posts.</p>";
       }
     }
-  
+
     window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
 </body>
