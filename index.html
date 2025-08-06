@@ -240,6 +240,13 @@
       <audio id="bgMusic" autoplay></audio>
       <button onclick="toggleMute()" id="muteBtn">🔊</button>
     </div>
+
+    <div class="window">
+      <h2>Blog</h2>
+      <div id="blogEntries" style="max-height: 300px; overflow-y: auto; padding-right: 8px;">
+        <p>Loading blog posts...</p>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -488,7 +495,6 @@
       loadTrack(currentTrack);
     });
   
-    // Autoplay first track on load
     window.addEventListener('DOMContentLoaded', () => {
       const waitForInteraction = () => {
         loadTrack(currentTrack);
@@ -496,7 +502,35 @@
       };
       document.addEventListener('click', waitForInteraction, { once: true });
     });
+  </script>
 
+  <script>
+    const BLOG_JSON_URL = "https://raw.githubusercontent.com/galzstuff/abtgal/main/blog.json";
+  
+    async function cargarBlog() {
+      try {
+        const res = await fetch(BLOG_JSON_URL);
+        const posts = await res.json();
+        const contenedor = document.getElementById("blogEntries");
+        contenedor.innerHTML = "";
+  
+        posts.reverse().forEach(post => {
+          const div = document.createElement("div");
+          div.style.marginBottom = "20px";
+          div.innerHTML = `
+            <strong>${post.title}</strong><br>
+            <small>${post.date}</small>
+            <p>${post.content}</p>
+            <hr>
+          `;
+          contenedor.appendChild(div);
+        });
+      } catch (error) {
+        document.getElementById("blogEntries").innerHTML = "<p>Error loading blog posts.</p>";
+      }
+    }
+  
+    window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
 </body>
 </html>
