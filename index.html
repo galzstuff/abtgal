@@ -248,7 +248,46 @@
       </div>
     </div>
   </div>
-
+ 
+  <script>
+    function toggleLang() {
+    const btn = document.querySelector('.lang-toggle');
+    const isEnglish = btn.textContent.includes('Español');
+  
+    if (isEnglish) {
+      // Cambiar a español
+      btn.textContent = 'Switch to English';
+      document.getElementById('aboutTitle').textContent = 'Sobre mí';
+      document.getElementById('aboutText').textContent = "Hola, soy Gal. Soy creador de contenido y programador que (principalmente) hace proyectos privados que luego comparto con amigos por diversión. Soy de España.";
+      document.getElementById('socialTitle').textContent = 'Redes sociales';
+      document.getElementById('socialText').textContent = 'Sígueme en redes sociales para mantenerte actualizado con mi contenido.';
+      document.getElementById('socialLink').textContent = 'Ver enlaces sociales →';
+      document.getElementById('interestsTitle').textContent = 'Intereses';
+      document.getElementById('DiscordTitle').textContent = 'Estado de Discord';
+      document.getElementById('VisitsTitle').textContent = 'Contador de visitas';
+      document.getElementById('NP').textContent = 'Reproduciendo ahora';
+      document.getElementById('Shitpost').textContent = 'Shitposting (UN SALUDO A LA GRASA🗣️🗣️🗣️)';
+      document.getElementById('Code').textContent = 'Programar';
+      document.getElementById('Valve').textContent = 'Juegos de Valve';
+    } else {
+      // Cambiar a inglés
+      btn.textContent = 'Cambiar a Español';
+      document.getElementById('aboutTitle').textContent = 'About me';
+      document.getElementById('aboutText').textContent = "Hi, I'm Gal. I'm a content creator and programmer that (mostly) does private projects that I later share with friends for fun. I'm from Spain.";
+      document.getElementById('socialTitle').textContent = 'Socials';
+      document.getElementById('socialText').textContent = 'Follow me on social media to stay updated with my content online.';
+      document.getElementById('socialLink').textContent = 'See social links →';
+      document.getElementById('interestsTitle').textContent = 'Interests';
+      document.getElementById('DiscordTitle').textContent = 'Discord Status';
+      document.getElementById('VisitsTitle').textContent = 'Visits Counter';
+      document.getElementById('NP').textContent = 'Now Playing';
+      document.getElementById('Shitpost').textContent = 'Shitposting';
+      document.getElementById('Code').textContent = 'Coding';
+      document.getElementById('Valve').textContent = 'Valve games';
+    }
+  }
+  </script>
+  
   <script>
 @@ -488,15 +495,42 @@
       loadTrack(currentTrack);
@@ -291,42 +330,5 @@
   
     window.addEventListener("DOMContentLoaded", cargarBlog);
   </script>
-
-  function toggleLang() {
-    const btn = document.querySelector('.lang-toggle');
-    const isEnglish = btn.textContent.includes('Español');
-  
-    if (isEnglish) {
-      // Cambiar a español
-      btn.textContent = 'Switch to English';
-      document.getElementById('aboutTitle').textContent = 'Sobre mí';
-      document.getElementById('aboutText').textContent = "Hola, soy Gal. Soy creador de contenido y programador que (principalmente) hace proyectos privados que luego comparto con amigos por diversión. Soy de España.";
-      document.getElementById('socialTitle').textContent = 'Redes sociales';
-      document.getElementById('socialText').textContent = 'Sígueme en redes sociales para mantenerte actualizado con mi contenido.';
-      document.getElementById('socialLink').textContent = 'Ver enlaces sociales →';
-      document.getElementById('interestsTitle').textContent = 'Intereses';
-      document.getElementById('DiscordTitle').textContent = 'Estado de Discord';
-      document.getElementById('VisitsTitle').textContent = 'Contador de visitas';
-      document.getElementById('NP').textContent = 'Reproduciendo ahora';
-      document.getElementById('Shitpost').textContent = 'Shitposting (UN SALUDO A LA GRASA🗣️🗣️🗣️)';
-      document.getElementById('Code').textContent = 'Programar';
-      document.getElementById('Valve').textContent = 'Juegos de Valve';
-    } else {
-      // Cambiar a inglés
-      btn.textContent = 'Cambiar a Español';
-      document.getElementById('aboutTitle').textContent = 'About me';
-      document.getElementById('aboutText').textContent = "Hi, I'm Gal. I'm a content creator and programmer that (mostly) does private projects that I later share with friends for fun. I'm from Spain.";
-      document.getElementById('socialTitle').textContent = 'Socials';
-      document.getElementById('socialText').textContent = 'Follow me on social media to stay updated with my content online.';
-      document.getElementById('socialLink').textContent = 'See social links →';
-      document.getElementById('interestsTitle').textContent = 'Interests';
-      document.getElementById('DiscordTitle').textContent = 'Discord Status';
-      document.getElementById('VisitsTitle').textContent = 'Visits Counter';
-      document.getElementById('NP').textContent = 'Now Playing';
-      document.getElementById('Shitpost').textContent = 'Shitposting';
-      document.getElementById('Code').textContent = 'Coding';
-      document.getElementById('Valve').textContent = 'Valve games';
-    }
-  }
 </body>
 </html>
