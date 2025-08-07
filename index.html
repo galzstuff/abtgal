@@ -184,31 +184,25 @@
         width: 90%;
       }
     
-    #bgWrapper {
+    #backgroundVideo {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
-      z-index: -1;
+      object-fit: cover;
+      z-index: -10;
+      filter: blur(3px);
       pointer-events: none;
-      filter: blur(4px);
     }
 
-    #bgVideo {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
   </style>
 </head>
 <body>
-  <div id="bgWrapper">
-    <video autoplay muted loop playsinline id="bgVideo">
-      <source src="https://files.catbox.moe/rrjt44.webm" type="video/webm">
-    </video>
-  </div>
+  <video autoplay muted loop id="backgroundVideo">
+    <source src="https://files.catbox.moe/rrjt44.webm" type="video/webm">
+  </video>
+
 
   <div class="header">
     <img src="https://files.catbox.moe/bhy4w9.png" alt="Gal's Urzuk OC, Purpur. / El OC de Urzuk de Gal, Purpur.">
