@@ -230,8 +230,35 @@
 
     <div class="window">
       <h2 id="DiscordTitle">Discord Status</h2>
-        <a href="https://discord.com/users/823875991729864725"><img src="https://lanyard.cnrad.dev/api/823875991729864725?idleMessage=Not%20doing%20anything%20at%20the%20moment.%2FNo%20estoy%20haciendo%20nada%20por%20ahora.&theme=dark&hideDecoration=true&animatedDecoration=false" /></a>
+      <a href="https://discord.com/users/823875991729864725">
+        <img id="discordStatus"
+             src="https://lanyard.cnrad.dev/api/823875991729864725?idleMessage=Not%20doing%20anything%20at%20the%20moment.%2FNo%20estoy%20haciendo%20nada%20por%20ahora.&theme=dark&hideDecoration=true&animatedDecoration=false"
+             style="transition: opacity 0.3s ease;" />
+      </a>
     </div>
+    
+    <script>
+      function updateDiscordStatus() {
+        const img = document.getElementById("discordStatus");
+        img.style.opacity = 0;
+        const newSrc = "https://lanyard.cnrad.dev/api/823875991729864725?idleMessage=Not%20doing%20anything%20at%20the%20moment.%2FNo%20estoy%20haciendo%20nada%20por%20ahora.&theme=dark&hideDecoration=true&animatedDecoration=false&t=" + Date.now();
+        setTimeout(() => {
+          img.src = newSrc;
+        }, 300);
+      }
+    
+      document.getElementById("discordStatus").addEventListener("load", () => {
+        document.getElementById("discordStatus").style.opacity = 1;
+      });
+    
+      updateDiscordStatus();
+    
+      setInterval(() => {
+        if (!document.hidden) {
+          updateDiscordStatus();
+        }
+      }, 5000);
+    </script>
 
     <div class="window">
       <h2 id="VisitsTitle">Visits Counter</h2>
