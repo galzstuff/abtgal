@@ -274,47 +274,119 @@
     </div>
 
     <div class="window">
-      <h2 id=PM>Messages - BROKEN WILL FIX SOON</h2>
+      <h2 id="PM">Messages</h2>
       <div id="messagesContainer" style="max-height: 250px; overflow-y: auto; padding: 0.5rem; border: 1px solid var(--primary); border-radius: var(--radius); background: var(--accent);"></div>
+      <button id="toggleSizeBtn" onclick="toggleMessagesSize()" style="margin-top:0.5rem; width:100%;">Expandir</button>
       <input type="text" id="messageUser" placeholder="Your name/Tu nombre" style="margin-top:0.5rem; width: 100%; padding:0.5rem; border-radius: var(--radius); border: 1px solid var(--primary);"/>
       <textarea id="messageText" placeholder="Write a message.../Escribe un mensaje..." style="margin-top:0.5rem; width: 100%; padding:0.5rem; border-radius: var(--radius); border: 1px solid var(--primary);" rows="3"></textarea>
-      <button onclick="sendMessage()" style="margin-top:0.5rem;">Send/Enviar</button>
+      <button id="sendBtn" onclick="sendMessage()" style="margin-top:0.5rem;">Send / Enviar</button>
+      <p id="msgError" style="display:none; color:red; margin-top:0.5rem;"></p>
     </div>
     
     <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbxtTvCCT2DELz3LVufLkP8CXdD92GStoCqRN803hkqJEJGL2dA0IcX239ouXOLO45me-w/exec";
+    let expanded = false;
+    function toggleMessagesSize() {
+      const container = document.getElementById("messagesContainer");
+      const btn = document.getElementById("toggleSizeBtn");
+      if (expanded) {
+        container.style.maxHeight = "250px";
+        btn.textContent = "Expandir";
+      } else {
+        container.style.maxHeight = "500px";
+        btn.textContent = "Reducir";
+      }
+      expanded = !expanded;
+    }
+    
+    const API_URL = "https://script.google.com/macros/s/AKfycbyt0M-nnJU1WsMA3XUP7ZqVbHXr7e4FDpXWBSB2uiDhxTPYzxPvhE_0KxIXSB5XxLs07w/exec";
+    const $container = document.getElementById("messagesContainer");
+    const $user = document.getElementById("messageUser");
+    const $text = document.getElementById("messageText");
+    const $btn = document.getElementById("sendBtn");
+    const $err = document.getElementById("msgError");
+    
+    function humanTime(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      if (isNaN(d)) return "";
+      const pad = n => (n<10 ? "0"+n : n);
+      return `${pad(d.getDate())}/${pad(d.getMonth()+1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+    
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, ch => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[ch]));
+    }
+    
+    function linkify(text) {
+      const urlRe = /\bhttps?:\/\/[^\s]+/g;
+      return text.replace(urlRe, u => `<a href="${u}" target="_blank" rel="noopener" style="color:var(--primary); text-decoration:none;">${u}</a>`);
+    }
+    
+    function renderMessages(list) {
+      if (!list || !list.length) {
+        $container.innerHTML = '<p style="opacity:0.7;">No messages yet / Aún no hay mensajes.</p>';
+        return;
+      }
+      $container.innerHTML = list.map(m => `
+        <div style="padding: .4rem .5rem; background: rgba(255,255,255,.6); border-radius: 10px; margin-bottom:.4rem;">
+          <div style="display:flex; justify-content:space-between; gap:.6rem; align-items:baseline;">
+            <strong style="color:var(--text);">${escapeHtml(m.user || "Anon")}</strong>
+            <small style="opacity:.65;">${humanTime(m.timestamp)}</small>
+          </div>
+          <div style="margin-top:.15rem; white-space:pre-wrap;">${linkify(escapeHtml(m.message || ""))}</div>
+        </div>
+      `).join("");
+      $container.scrollTop = $container.scrollHeight;
+    }
     
     async function fetchMessages() {
       try {
-        const res = await fetch(API_URL);
+        $err.style.display = "none";
+        const res = await fetch(API_URL, { method: "GET", cache: "no-store" });
         const data = await res.json();
-        const container = document.getElementById("messagesContainer");
-        container.innerHTML = data.map(m => `<p><strong>${m.user}:</strong> ${m.message}</p>`).join("");
-        container.scrollTop = container.scrollHeight;
-      } catch (err) {
-        console.error("Error fetching messages:", err);
+        renderMessages(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error("Error fetching messages:", e);
+        $err.textContent = "Error fetching / cargando mensajes.";
+        $err.style.display = "block";
       }
     }
     
     async function sendMessage() {
-      const user = document.getElementById("messageUser").value.trim();
-      const message = document.getElementById("messageText").value.trim();
-      if (!user || !message) return alert("Please enter your name and message.");
-      
+      const user = $user.value.trim();
+      const message = $text.value.trim();
+      if (!user || !message) {
+        $err.textContent = "Please enter your name and message / Escribe tu nombre y mensaje.";
+        $err.style.display = "block";
+        return;
+      }
+    
       try {
+        $err.style.display = "none";
+        $btn.disabled = true;
+        $btn.textContent = "Sending…";
+    
         const res = await fetch(API_URL, {
           method: "POST",
-          body: JSON.stringify({ user, message }),
+          body: JSON.stringify({ user, message })
         });
+    
         const data = await res.json();
         if (data.status === "success") {
-          document.getElementById("messageText").value = "";
+          $text.value = "";
           fetchMessages();
         } else {
-          alert("Error sending message: " + data.message);
+          throw new Error(data.message || "Unknown error");
         }
-      } catch (err) {
-        console.error("Error sending message:", err);
+      } catch (e) {
+        console.error("Error sending message:", e);
+        $err.textContent = "Error sending / enviando mensaje.";
+        $err.style.display = "block";
+      } finally {
+        $btn.disabled = false;
+        $btn.textContent = "Send / Enviar";
       }
     }
     
@@ -347,11 +419,11 @@
     	  document.getElementById("Valve").textContent = "Juegos de Valve";
     	  document.getElementById("Shitpost").textContent = "Shitposting (UN SALUDO A LA GRASA🗣️)";
         document.getElementById("DiscordTitle").textContent = "Estado de Discord";
-        document.getElementById("Clothes").textContent = "╰-Ropa que vendo en Roblox";
+        document.getElementById("Clothes").textContent = "╰- Ropa que vendo en Roblox";
         document.getElementById("VisitsTitle").textContent = "Contador de visitas";
         document.getElementById("NP").textContent = "Ahora reproduciendo...";
-        document.getElementById("PM").textContent = "Mensajes - ROTO SE ARREGLARÁ PRONTO";
-        document.getElementById("ttalt").textContent = "╰-TikTok (Cuenta alternativa/Backup)";
+        document.getElementById("PM").textContent = "Mensajes";
+        document.getElementById("ttalt").textContent = "╰- TikTok (Cuenta alternativa/Backup)";
         document.getElementById("More").textContent = "¡...y más! Mis mensajes privados (DMs/MDs) están abiertos para todos en todas las plataformas que esten en mis redes sociales que lo permitan (nota: para acceder a mi perfil de Discord haz click en la imagen con mi Estado de Discord en la ventana con dicho nombre). No dudes en preguntarme si me gusta alguna otra cosa que no haya sido mencionada aquí (¡revisar mis redes sociales podría ayudarte a que sepas más de mis intereses!).";
         document.querySelector(".lang-toggle").textContent = "Change to English";
         currentLang = 'es';
@@ -366,11 +438,11 @@
     	  document.getElementById("Valve").textContent = "Valve games";
     	  document.getElementById("Shitpost").textContent = "Shitposting";
         document.getElementById("DiscordTitle").textContent = "Discord Status (insert cool easter egg here >:])";
-        document.getElementById("Clothes").textContent = "╰-Selling clothes on Roblox";
+        document.getElementById("Clothes").textContent = "╰- Selling clothes on Roblox";
         document.getElementById("VisitsTitle").textContent = "Visits Counter";
         document.getElementById("NP").textContent = "Now Playing";
-        document.getElementById("PM").textContent = "Messages - BROKEN WILL FIX SOON";
-        document.getElementById("ttalt").textContent = "╰-TikTok (Alt/Backup account)";
+        document.getElementById("PM").textContent = "Messages";
+        document.getElementById("ttalt").textContent = "╰- TikTok (Alt/Backup account)";
         document.getElementById("More").textContent = "...and more! DMs are open in all the platforms on where you can open them to everyone (check socials if you haven't done so yet, and/or press on the Discord Status image inside its window to go to my Discord profile), I won't mind you asking stuff like if I like certain stuff (and checking my socials should help!)";
         document.querySelector(".lang-toggle").textContent = "Cambiar a Español";
         currentLang = 'en';
