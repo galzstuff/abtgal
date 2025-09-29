@@ -539,14 +539,12 @@
       nowPlaying = document.getElementById("nowPlaying");
       muteBtn = document.getElementById("muteBtn");
   
-      // Iniciar solo tras interacción del usuario
       const iniciar = () => {
         loadTrack(currentTrack);
         document.removeEventListener("click", iniciar);
       };
       document.addEventListener("click", iniciar, { once: true });
   
-      // Reproducir siguiente canción al terminar
       audio.addEventListener("ended", () => {
         nextTrack();
       });
