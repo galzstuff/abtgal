@@ -200,6 +200,11 @@
     </div>
 
     <div class="window">
+      <h2 id="commsTitle">Commission info</h2>
+      <img src="https://files.catbox.moe/wyrcwv.png">
+    </div>
+
+    <div class="window">
       <h2 id="socialTitle">Socials</h2>
       <p id="socialText">Follow me on social media to stay updated with my content online.</p>
       <a onclick="toggleSocialMenu()" id="socialLink">See social links →</a>
@@ -442,6 +447,7 @@
         document.getElementById("bot1").textContent = "Añade recordatorios a tu servidor o cuenta de Discord"
         document.getElementById("bot2").textContent = "Añade acciones de moderación temporales personalizables a tu servidor de Discord"
         document.getElementById("bot3").textContent = "Añade a un bot de IA potenciado por Google Gemini a tu servidor de Discord"
+        document.getElementById("commsTitle").textContent = "Info. de comisiones (en inglés)"
         document.querySelector(".lang-toggle").textContent = "Change to English";
         currentLang = 'es';
       } else {
@@ -466,6 +472,7 @@
         document.getElementById("bot1").textContent = "Add reminders to your Discord server/account"
         document.getElementById("bot2").textContent = "Add customizable temporal moderation actions to your Discord server"
         document.getElementById("bot3").textContent = "Add a Google Gemini-powered AI bot to your Discord server"
+        document.getElementById("commsTitle").textContent = "Commission info"
         document.querySelector(".lang-toggle").textContent = "Cambiar a Español";
         currentLang = 'en';
       }
