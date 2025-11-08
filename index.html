@@ -13,13 +13,13 @@
     }
   
     :root {
-      --bg: #f8f1e7;         /* Fondo general: beige claro */
-      --card-bg: #d6bfa3;    /* Fondo de tarjetas: marrón claro */
-      --primary: #8b5e3c;    /* Color principal: marrón medio */
-      --accent: #e7d2b8;     /* Acento: tono crema */
-      --text: #3e2b18;       /* Texto: marrón oscuro */
+      --bg: #2b211a;         /* Fondo general: marrón muy oscuro, tipo madera */
+      --card-bg: #4b3728;    /* Fondo de tarjetas: marrón medio */
+      --primary: #c69c6d;    /* Color principal: dorado-marrón */
+      --accent: #8c6a4f;     /* Acento: marrón cálido intermedio */
+      --text: #f5e8d3;       /* Texto: beige claro */
       --radius: 16px;
-      --shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      --shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     }
   
     * {
@@ -52,6 +52,7 @@
       height: 200px;
       border-radius: 50%;
       margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.6);
     }
   
     .header h1 {
@@ -96,17 +97,18 @@
       margin-top: 1rem;
       padding: 0.5rem 1rem;
       background: var(--primary);
-      color: white;
+      color: #2b211a;
       border: none;
       border-radius: var(--radius);
       cursor: pointer;
       font-size: 1rem;
       width: fit-content;
       align-self: flex-end;
+      font-weight: bold;
     }
   
     .window button:hover {
-      background: #6b4328; /* tono más oscuro del marrón */
+      background: #a87d50;
     }
   
     .window:nth-child(1) { animation-delay: 0.2s; }
@@ -149,7 +151,7 @@
     }
   
     .window a:hover {
-      color: #6b4328;
+      color: #e3b97f;
     }
   
     .social-menu {
@@ -187,7 +189,7 @@
 </head>
 <body>
   <div class="header">
-    <img src="https://files.catbox.moe/bhy4w9.png" alt="Gal's Urzuk OC, Purpur. / El OC de Urzuk de Gal, Purpur.">
+    <img src="https://files.catbox.moe/j5h37j.png" alt="pfp :p">
     <h1>Gal's Stuff</h1>
     <button class="lang-toggle" onclick="toggleLang()">Cambiar a Español</button>
   </div>
