@@ -184,6 +184,31 @@
       .window {
         width: 90%;
       }
+    audio {
+      width: 100%;
+      outline: none;
+      border-radius: 12px;
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow);
+      margin-top: 1rem;
+      accent-color: var(--primary); /* cambia color de la barra en navegadores compatibles */
+    }
+    
+    audio::-webkit-media-controls-panel {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+    }
+    
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-pause-button {
+      background-color: var(--primary);
+      border-radius: 50%;
+    }
+    
+    audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display {
+      color: var(--text);
+    }
     }
   </style>
 </head>
