@@ -13,11 +13,11 @@
     }
   
     :root {
-      --bg: #2b211a;         /* Fondo general: marrón muy oscuro, tipo madera */
-      --card-bg: #4b3728;    /* Fondo de tarjetas: marrón medio */
-      --primary: #c69c6d;    /* Color principal: dorado-marrón */
-      --accent: #8c6a4f;     /* Acento: marrón cálido intermedio */
-      --text: #f5e8d3;       /* Texto: beige claro */
+      --bg: #2b211a;
+      --card-bg: #4b3728;
+      --primary: #c69c6d;
+      --accent: #8c6a4f;
+      --text: #f5e8d3;
       --radius: 16px;
       --shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
     }
@@ -191,7 +191,7 @@
       background-color: var(--card-bg);
       box-shadow: var(--shadow);
       margin-top: 1rem;
-      accent-color: var(--primary); /* cambia color de la barra en navegadores compatibles */
+      accent-color: var(--primary);
     }
     
     audio::-webkit-media-controls-panel {
@@ -231,9 +231,9 @@
     </div>
 
     <div class="window">
-      <h2 id="socialTitle">socials</h2>
-      <p id="socialText">check my socials below!!</p>
-      <a onclick="toggleSocialMenu()" id="socialLink">see socialz →</a>
+      <h2 id="socialTitle">socials/projects</h2>
+      <p id="socialText">check my socials/projects below!!</p>
+      <a onclick="toggleSocialMenu()" id="socialLink">check socialz/projectz →</a>
       <div class="social-menu" id="socialMenu">
         <a class="social-link" href="https://discord.gg/kSWDC5whwD" target="_blank"><i class="fab fa-discord"></i> discord</a>
         <a class="social-link" href="https://tiktok.com/@imgal__" target="_blank"><i class="fab fa-tiktok"></i> tiktok</a>
@@ -247,6 +247,7 @@
         <a id="bot1" class="social-link" href="https://discord.com/oauth2/authorize?client_id=1366506603297112155" target="_blank"><i class="fab fa-discord"></i> add reminders to your Discord server/account</a>
         <a id="bot2" class="social-link" href="https://discord.com/oauth2/authorize?client_id=1368161510114983987" target="_blank"><i class="fab fa-discord"></i> add customizable temporal moderation actions to your Discord server</a>
         <a id="bot3" class="social-link" href="https://discord.com/oauth2/authorize?client_id=1426889042435379240" target="_blank"><i class="fab fa-discord"></i> add a Google Gemini-powered AI bot to your Discord server</a>
+        <a id="ybmp" class="social-link" href="https://galzstuff.github.io/ybmp" target="_blank"><i class="fab fa-cube"></i> start using a powerful music player right on your browser!</a>
       </div>
     </div>
 
@@ -456,9 +457,9 @@
       if (currentLang === 'en') {
         document.getElementById("aboutTitle").textContent = "sobre mí";
         document.getElementById("aboutText").textContent = "buenas, soy gal. soy un creador de contenido y programador de varios proyectos (mayormente) privados que comparto con mis amigos y hago por diversión. soy de España. (también cabría decir que soy menor de edad.)";
-        document.getElementById("socialTitle").textContent = "redes sociales";
-        document.getElementById("socialText").textContent = "sígueme en mis redes sociales para estar al tanto de mi contenido en internet.";
-        document.getElementById("socialLink").textContent = "ver redes sociales →";
+        document.getElementById("socialTitle").textContent = "redes sociales/proyectos";
+        document.getElementById("socialText").textContent = "¡revisa mis redes/proyectos con el botón de abajo!";
+        document.getElementById("socialLink").textContent = "ver redes sociales/proyectos →";
         document.getElementById("interestsTitle").textContent = "intereses";
     	  document.getElementById("Code").textContent = "programar";
     	  document.getElementById("Valve").textContent = "juegos de Valve";
@@ -476,14 +477,15 @@
         document.getElementById("bot2").textContent = "añade acciones de moderación temporales personalizables a tu servidor de Discord"
         document.getElementById("bot3").textContent = "añade a un bot de IA potenciado por Google Gemini a tu servidor de Discord"
         document.getElementById("commsTitle").textContent = "info. de comisiones (en inglés)"
+        document.getElementById("ybmp").textContent = "¡usa un reproductor de música poderoso directamente desde tu navegador!"
         document.querySelector(".lang-toggle").textContent = "change to English";
         currentLang = 'es';
       } else {
         document.getElementById("aboutTitle").textContent = "about me";
         document.getElementById("aboutText").textContent = "hi, I'm gal. I'm a content creator and coder that (mostly) does private projects that I later share with friends for fun. I'm from Spain. I'm from Spain and I'm a minor. Note exclusively for the english language: English is NOT my first language. I might do typos and other things like that while writing, talking, etc. I apologise.";
-        document.getElementById("socialTitle").textContent = "socials";
-        document.getElementById("socialText").textContent = "follow me on social media to stay updated with my content online.";
-        document.getElementById("socialLink").textContent = "check socials →";
+        document.getElementById("socialTitle").textContent = "socials/projects";
+        document.getElementById("socialText").textContent = "check my socials/projects below!!";
+        document.getElementById("socialLink").textContent = "check socialz/projectz →";
         document.getElementById("interestsTitle").textContent = "interests";
     	  document.getElementById("Code").textContent = "coding";
     	  document.getElementById("Valve").textContent = "Valve games";
@@ -501,6 +503,7 @@
         document.getElementById("bot2").textContent = "add customizable temporal moderation actions to your Discord server"
         document.getElementById("bot3").textContent = "add a Google Gemini-powered AI bot to your Discord server"
         document.getElementById("commsTitle").textContent = "commission info"
+        document.getElementById("ybmp").textContent = "start using a powerful music player right on your browser!"
         document.querySelector(".lang-toggle").textContent = "cambiar a Español";
         currentLang = 'en';
       }
